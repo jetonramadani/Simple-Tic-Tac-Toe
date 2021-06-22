@@ -35,11 +35,14 @@ class TicTacToe {
     TicTacToe(Scanner sc) {
         this.sc = sc;
         setCells();
+        printBoard();
     }
     private void setCells() {
-        System.out.print("Enter cells: ");
-        plays = sc.next().toCharArray();
+//        System.out.print("Enter cells: ");
+//        plays = sc.next().toCharArray();
+        plays = "_________".toCharArray();
         for (char ch : plays) {
+
             if (ch == 'X') {
                 ++x_;
             } else if (ch == 'O') {
@@ -71,6 +74,7 @@ class TicTacToe {
             }
         }
         printBoard();
+        xMove = !xMove;
     }
     private int checkOk(char x, char y, char z) {
         if (x != '_' && x == y && x == z) {
@@ -127,7 +131,11 @@ class TicTacToe {
         for (int i = 0; i < 3; i++) {
             System.out.print("| ");
             for (int j = 0; j < 3; j++) {
-                System.out.print(plays[i * 3 + j] + " ");
+                if (plays[i * 3 + j] != '_') {
+                    System.out.print(plays[i * 3 + j] + " ");
+                } else {
+                    System.out.print("  ");
+                }
             }
             System.out.println("|");
         }
@@ -141,7 +149,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         // write your code here
         TicTacToe ticTacToe = new TicTacToe(sc);
-        ticTacToe.printBoard();
-        ticTacToe.move();
+        String result;
+        do {
+            ticTacToe.move();
+            result = ticTacToe.getGameCheck();
+        } while (!result.endsWith("wins") && !result.equals("Draw"));
+        System.out.println(result);
     }
 }
