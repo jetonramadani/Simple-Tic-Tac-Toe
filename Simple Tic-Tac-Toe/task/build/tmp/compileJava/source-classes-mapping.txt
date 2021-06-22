@@ -1,2 +1,4 @@
 tictactoe/Main.java
  tictactoe.Main
+ tictactoe.TicTacToe
+ tictactoe.TicTacToe$1
